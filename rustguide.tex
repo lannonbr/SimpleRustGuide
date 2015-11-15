@@ -1,0 +1,39 @@
+\documentclass{article}
+\title{Rust: A simple guide}
+\author{Benjamin Lannon, James Bruska, David Josephs, Jacob Meite}
+
+\usepackage{listings}
+\usepackage[margin=0.8in]{geometry}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Installation}
+To install Rust, you can find binaries for Linux, Mac OSX, or Windows at https://www.rust-lang.org/downloads.html or download the source from Github at https://github.com/rust-lang/rust. If you are on OSX, you can install Rust through Homebrew or if you are using Arch Linux, it is available in the community repositories of Pacman. This guide was made with the current version of the Rust compiler (rustc 1.4.0)
+
+\section{Hello World in Rust}
+Now that Arch is installed let's get working on a simple program. The easiest program to write is one which prints "Hello World" to the screen. The code will be saved as main.rs and is seen below.
+\begin{lstlisting}
+fn main() {
+	println!("Hello, world!");
+}
+\end{lstlisting}
+
+to compile a Rust file, one can type \begin{small}
+rustc main.rs
+\end{small}
+and an executable main (or main.exe on windows) will be generated.
+
+\section{Data Types}
+
+\section{Immutability by Default}
+
+\section{Rust Packages: Cargo}
+
+\section{Example: "Harry's Random Walk" Overview}
+
+\section{References}
+The Rust Programming Language Documentation:https://doc.rust-lang.org/stable/
+
+\end{document}
