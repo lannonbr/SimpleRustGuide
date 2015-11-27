@@ -1,0 +1,22 @@
+[package]
+
+name="Harry's Random Walk: Rust Edition"
+version="0.1.0"
+authors = [
+	"Benjamin Lannon <lannonbr@clarkson.edu>",
+	"Jacob Melite",
+	"James Bruska",
+	"David Joesephs"
+]
+
+[[bin]]
+name="harrys-random-walk"
+
+[dependencies]
+piston = "0.16.0"
+piston2d-graphics = "0.11.0"
+piston_window = "0.30.0"
+piston2d-opengl_graphics = "0.19.0"
+image = "0.5.1"
+vecmath = "0.2.0"
+rand = "0.3.12"
