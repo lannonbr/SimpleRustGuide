@@ -10,14 +10,17 @@ use vecmath::*;
 use rand::{thread_rng, Rng};
 
 fn clamp(x: u32, min: u32, max: u32) -> u32 {
-    if x < min {
-        x = min;
-    } else if x > max {
-        x = max;
+    let mut result: u32 = x.clone();
+
+    if result < min {
+        result = min;
+    } else if result > max {
+        result = max;
     }
 
-    x as u32;
+    result
 }
+
 
 fn main() {
     let mut rng = thread_rng();
@@ -25,7 +28,7 @@ fn main() {
     // Change this to OpenGL::V2_1 if not working.
     let opengl = OpenGL::V3_2;
 
-    const MAX: u32 = 300;
+    const MAX: u32 = 20;
     const WHITE: [f32; 4] = [1.0, 1.0, 1.0, 1.0];
     const win_pos:(u32, u32) = (MAX, MAX);
 
@@ -63,11 +66,28 @@ fn main() {
             std::process::exit(1);
         }
 
-        let dx: i32 = rng.gen_range(-1, 2);
-        let dy: i32 = rng.gen_range(-1, 2);
-        println!("{}, {}", dx,dy);
+        // 0 = nothing
+        // 1 = +1
+        // 2 = -1
+        let dx: u32 = rng.gen_range(0, 3);
+        let dy: u32 = rng.gen_range(0, 3);
+        println!("dx:{},\tdy:{}", dx, dy);
 
-        new_pos = (clamp(last_pos.0 + dx, 0, MAX), clamp(last_pos.1 + dy, 0, MAX));
+        if dx == 0 && last_pos.0 != 0  {
+            last_pos.0 = last_pos.0 -1;
+        } else if dx == 1 && last_pos.0 != MAX {
+            last_pos.0 = last_pos.0 +1;
+        }
+
+        if dy == 0 && last_pos.1 != 0{
+            last_pos.1 = last_pos.1 -1;
+        } else if dy == 1 && last_pos.1 != MAX {
+            last_pos.1 = last_pos.1 +1;
+        }
+
+        new_pos = (clamp(last_pos.0, 0, MAX), clamp(last_pos.1, 0, MAX));
+
+        println!("{}, {}", new_pos.0,new_pos.1);
 
         canvas.put_pixel(new_pos.0, new_pos.1, im::Rgba([255, 0, 0, 255]));
         texture.update(&mut* e.factory.borrow_mut(), &canvas).unwrap();
