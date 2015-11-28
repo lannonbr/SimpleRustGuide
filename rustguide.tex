@@ -1,4 +1,4 @@
-\documentclass{article}
+﻿\documentclass{article}
 \title{Rust: A simple guide}
 \author{Benjamin Lannon, James Bruska, David Josephs, Jacob Meite}
 
@@ -25,9 +25,22 @@ rustc main.rs
 \end{small}
 and an executable main (or main.exe on windows) will be generated.
 
+\section{Paradigms}
+
 \section{Data Types}
+There are 10 types within rust: primitive, textual, tuples vector, structure, enumerated, recursive, pointer, function, and object. There are also two things that support the typing. There are the type parameters and the self type.
+
+The primitive types are made up of four main sub-types. There is the “unit” type (), the boolean type, the machine type, and the machine-dependent type. The “unit” type has a single “unit” value (). This can also be called “nil.” The boolean types evaluate to true and false. The machine types are split into three types. There are unsigned word types (u8, u16, u32, and u64), signed two's compliment word types (i8, i16, i32, and i64), and IEEE 754-2008 binary32 and binary64 floating-point types (f32 and f64). Finally the machine-dependent types are borken into integer (uint and int) and floating point (float [f32 or f64]) types. These are versions of the primitives that are machine specific. 
+
+The other types are consistant with the normal usage of the types.
+
+The type parameters are similar to templates. They allow the use of a parameter without knowing what type will be used in it. The self types are a reference to the implementing item. 
+
+In Rust, data types are sectioned into “kinds.” The kinds are based on the properties of the components of the type. The types are freeze, send, 'static, drop, and default. Freeze make the item contain no mutable memory location. Send types (scalars, owning pointers, owned closures, and structural types) can be safely sent between tasks. All send types are also 'static. The 'static types do not have any extra pointers and makes sure that no unsafe opperations take place. 
+The drop trait adds a destructor method called “drop.” This works with a top-down order. Only send types can also have a drop parameter. The default are types with destructors, closure environments, and other non-first-class types. These are not copyable and can only be accessed with pointers.
 
 \section{Immutability by Default}
+Rust has a primary focus, safety. In order to create a more secure environment Rust makes bindings immutable by default. In other word the item cannot change any of its values. The keyword “mut” allows the item to be mutable. This allow the compiler to catch an item that was changed when the programmer did not intend for the item to change. The programmer can then call an item mutable if it needs to be. This allows for a safer programming environment.
 
 \section{Rust Project Workflow: Cargo}
 
