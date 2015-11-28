@@ -1,4 +1,4 @@
-﻿\documentclass{article}
+\documentclass{article}
 \title{Rust: A simple guide}
 \author{Benjamin Lannon, James Bruska, David Josephs, Jacob Meite}
 
@@ -43,8 +43,14 @@ The drop trait adds a destructor method called “drop.” This works with a top
 Rust has a primary focus, safety. In order to create a more secure environment Rust makes bindings immutable by default. In other word the item cannot change any of its values. The keyword “mut” allows the item to be mutable. This allow the compiler to catch an item that was changed when the programmer did not intend for the item to change. The programmer can then call an item mutable if it needs to be. This allows for a safer programming environment.
 
 \section{Rust Project Workflow: Cargo}
+Rust programs can be compiled by writing .rs files and using rustc directly, but the preferred workflow is to use Cargo. Cargo allows a developer to download a project off of something such as Github and immediately be able to start using the program.
+
+Cargo has a fairly simple setup. The main file in every project is Cargo.toml which is a configuration file for a project. It is where one puts metadata such as authors, descriptions of the package, version number. It also includes the files one needs to compile their project and any dependencies which can be found on https://crates.io
+
+A implementation can be found in the Harry's Random Walk program as described in the next section.
 
 \section{Example: "Harry's Random Walk" Overview}
+Harry's Random Walk is good example to test out many features of the Rust programming language, including GUIs, random number generation, and the overall workflow of building Rust applications.
 
 \section{Advantages to other languages}
 
