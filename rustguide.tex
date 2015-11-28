@@ -3,32 +3,29 @@
 \author{Benjamin Lannon, James Bruska, David Josephs, Jacob Meite}
 
 \usepackage{listings}
-\usepackage[margin=0.8in]{geometry}
+\usepackage[margin=1in]{geometry}
 
 \begin{document}
 \maketitle
 \tableofcontents
 
 \section{Installation}
-To install Rust, you can find binaries for Linux, Mac OSX, or Windows at https://www.rust-lang.org/downloads.html or download the source from Github at https://github.com/rust-lang/rust. If you are on OSX, you can install Rust through Homebrew or if you are using Arch Linux, it is available in the community repositories of Pacman. This guide was made with the current version of the Rust compiler (rustc 1.4.0)
+To install Rust, you can find binaries for Linux, Mac OSX, or Windows at https://www.rust-lang.org/downloads.html or download the source from Github at https://github.com/rust-lang/rust. If you are on OSX, you can install Rust through Homebrew or if you are using Arch Linux, it is available in the community repositories of Pacman. This guide was made with the current version of the Rust compiler (rustc 1.4.0) and the current version of the Rust project manager (Cargo 0.6.0)
 
 \section{Hello World in Rust}
-Now that Arch is installed let's get working on a simple program. The easiest program to write is one which prints "Hello World" to the screen. The code will be saved as main.rs and is seen below.
+Now that Rust is installed let's get working on a simple program. The easiest program to write is one which prints "Hello World" to the screen. The code will be saved as main.rs and is seen below.
 \begin{lstlisting}
 fn main() {
 	println!("Hello, world!");
 }
 \end{lstlisting}
 
-to compile a Rust file, one can type \begin{small}
-rustc main.rs
-\end{small}
-and an executable main (or main.exe on windows) will be generated.
+to compile a Rust file, one can type \emph{rustc main.rs} and an executable main (or main.exe on windows) will be generated.
 
 \section{Paradigms}
 
 \section{Data Types}
-There are 10 types within rust: primitive, textual, tuples vector, structure, enumerated, recursive, pointer, function, and object. There are also two things that support the typing. There are the type parameters and the self type.
+There are 10 types within Rust: primitive, textual, tuples vector, structure, enumerated, recursive, pointer, function, and object. There are also two things that support the typing. There are the type parameters and the self type.
 
 The primitive types are made up of four main sub-types. There is the “unit” type (), the boolean type, the machine type, and the machine-dependent type. The “unit” type has a single “unit” value (). This can also be called “nil.” The boolean types evaluate to true and false. The machine types are split into three types. There are unsigned word types (u8, u16, u32, and u64), signed two's compliment word types (i8, i16, i32, and i64), and IEEE 754-2008 binary32 and binary64 floating-point types (f32 and f64). Finally the machine-dependent types are borken into integer (uint and int) and floating point (float [f32 or f64]) types. These are versions of the primitives that are machine specific. 
 
@@ -45,12 +42,41 @@ Rust has a primary focus, safety. In order to create a more secure environment R
 \section{Rust Project Workflow: Cargo}
 Rust programs can be compiled by writing .rs files and using rustc directly, but the preferred workflow is to use Cargo. Cargo allows a developer to download a project off of something such as Github and immediately be able to start using the program.
 
-Cargo has a fairly simple setup. The main file in every project is Cargo.toml which is a configuration file for a project. It is where one puts metadata such as authors, descriptions of the package, version number. It also includes the files one needs to compile their project and any dependencies which can be found on https://crates.io
+Cargo has a fairly simple setup. The main file in every project is Cargo.toml which is a configuration file for a project. It is where one puts metadata such as authors, descriptions of the package, version number. It also includes the dependencies needed which will be downloaded from https://crates.io
 
-A implementation can be found in the Harry's Random Walk program as described in the next section.
+An example Cargo.toml file is seen below:
+
+\begin{lstlisting}
+[package]
+
+name="Harry's Random Walk: Rust Edition"
+version="0.1.0"
+authors = [
+	"Benjamin Lannon <lannonbr@clarkson.edu>",
+	"Jacob Melite",
+	"James Bruska",
+	"David Joesephs"
+]
+
+[[bin]]
+name="harrys-random-walk"
+
+[dependencies]
+piston = "0.16.0"
+piston2d-graphics = "0.11.0"
+piston_window = "0.30.0"
+piston2d-opengl_graphics = "0.19.0"
+image = "0.5.1"
+vecmath = "0.2.0"
+rand = "0.3.12"
+\end{lstlisting}
+
+Following, this, your source files are stored in the src/ directory and then all that needs to be done to run a Cargo project is either \emph{cargo build} to build the executable, or \emph{cargo run} to build and run the executable. Other major tools cargo offers include \emph{cargo test} to run through tests in your code, and \emph{cargo doc} to generate documentation.
 
 \section{Example: "Harry's Random Walk" Overview}
 Harry's Random Walk is good example to test out many features of the Rust programming language, including GUIs, random number generation, and the overall workflow of building Rust applications.
+
+Attached in the HarrysRandomWalk/ directory is all of the required files to run the program. The main package used to create HRW is Piston [website: http://www.piston.rs/], a game engine that uses OpenGL as a graphical backend. Instead of downloading the engine manually and linking it together with my program, the only thing needed to do was include the packages needed in the Cargo.toml file and it would download the needed dependencies and nothing more.
 
 \section{Advantages to other languages}
 
