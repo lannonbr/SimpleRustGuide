@@ -20,10 +20,10 @@ fn main() {
 }
 \end{lstlisting}
 
-to compile a Rust file, one can type \emph{rustc main.rs} and an executable main (or main.exe on windows) will be generated that will print out \emph{Hello, world!}.
+To compile a Rust file, one can type \emph{rustc main.rs} and an executable main (or main.exe on windows) will be generated that will print out \emph{Hello, world!}.
 
 \section{Paradigms}
-Rust has the following paradigms:
+Rust uses the following paradigms:
 \begin{itemize}
 \item Imperative
 \item Object-oriented
@@ -35,19 +35,19 @@ Rust has the following paradigms:
 \end{itemize}
 
 \section{Data Types}
-There are 10 types within Rust: primitive, textual, tuples vector, structure, enumerated, recursive, pointer, function, and object. There are also two things that support the typing. There are the type parameters and the self type.
+There are 10 types within Rust: primitive, textual, tuples vector, structure, enumerated, recursive, pointer, function, and object. There are also two things that support typing: type parameters and the self type.
 
-The primitive types are made up of four main sub-types. There is the “unit” type (), the boolean type, the machine type, and the machine-dependent type. The “unit” type has a single “unit” value (). This can also be called “nil.” The boolean types evaluate to true and false. The machine types are split into three types. There are unsigned word types (u8, u16, u32, and u64), signed two's compliment word types (i8, i16, i32, and i64), and IEEE 754-2008 binary32 and binary64 floating-point types (f32 and f64). Finally the machine-dependent types are borken into integer (uint and int) and floating point (float [f32 or f64]) types. These are versions of the primitives that are machine specific. 
+The primitive types are made up of four main sub-types. There is the “unit” type (), the boolean type, the machine type, and the machine-dependent type. The “unit” type has a single “unit” value (). This can also be called “nil.” The boolean types evaluate to true and false. The machine types are split into three types. There are unsigned word types (u8, u16, u32, and u64), signed two's compliment word types (i8, i16, i32, and i64), and IEEE 754-2008 binary32 and binary64 floating-point types (f32 and f64). Finally, the machine-dependent types are broken into integer (uint and int) and floating point (float [f32 or f64]) types. These are versions of the primitives that are machine specific. 
 
 The other types are consistant with the normal usage of the types.
 
-The type parameters are similar to templates. They allow the use of a parameter without knowing what type will be used in it. The self types are a reference to the implementing item. 
+The type parameters are similar to templates. They allow the use of a parameter without knowing what type will be used in it. The self types are a reference to the item that implements it. 
 
 In Rust, data types are sectioned into “kinds.” The kinds are based on the properties of the components of the type. The types are freeze, send, 'static, drop, and default. Freeze make the item contain no mutable memory location. Send types (scalars, owning pointers, owned closures, and structural types) can be safely sent between tasks. All send types are also 'static. The 'static types do not have any extra pointers and makes sure that no unsafe opperations take place. 
 The drop trait adds a destructor method called “drop.” This works with a top-down order. Only send types can also have a drop parameter. The default are types with destructors, closure environments, and other non-first-class types. These are not copyable and can only be accessed with pointers.
 
 \section{Immutability by Default}
-Rust has a primary focus, safety. In order to create a more secure environment Rust makes bindings immutable by default. In other word the item cannot change any of its values. The keyword “mut” allows the item to be mutable. This allow the compiler to catch an item that was changed when the programmer did not intend for the item to change. The programmer can then call an item mutable if it needs to be. This allows for a safer programming environment.
+Rust has a primary focus: safety. In order to create a more secure environment, Rust makes bindings immutable by default. In other words, the item cannot change any of its values. The keyword “mut” allows the item to be mutable. This allow the compiler to catch an item that was changed when the programmer did not intend for it to change. The programmer can then declare an item mutable if it needs to be modifyable. This allows for a safer programming environment.
 
 \section{Rust Project Workflow: Cargo}
 Rust programs can be compiled by writing .rs files and using rustc directly, but the preferred workflow is to use Cargo. Cargo allows a developer to download a project off of something such as Github and immediately be able to start using the program.
@@ -86,7 +86,7 @@ Following, this, your source files are stored in the src/ directory and then all
 \section{Example: "Harry's Random Walk" Overview}
 Harry's Random Walk is good example to test out many features of the Rust programming language, including GUIs, random number generation, and the overall workflow of building Rust applications.
 
-Attached in the HarrysRandomWalk/ directory is all of the required files to run the program. The main package used to create HRW is Piston [website: http://www.piston.rs/], a game engine that uses OpenGL as a graphical backend. Instead of downloading the engine manually and linking it together with my program, the only thing needed to do was include the packages needed in the Cargo.toml file and it would download the needed dependencies and nothing more.
+Attached in the HarrysRandomWalk/ directory is all of the required files to run the program. The main package used to create HRW is Piston [website: http://www.piston.rs/], a game engine that uses OpenGL as a graphical backend. Instead of downloading the engine manually and linking it together with the program, the only thing needed to do was to include the required packages in the Cargo.toml file. Rust will automatically download the needed dependencies and nothing more.
 
 \section{Advantages to other languages}
 A key feature of Rust is how it handles memory allocation. In Rust, memory is freed automatically when it is no longer needed. However, a garbage collector is not used to do this. Instead, the compiler automatically determines when the program should deallocate memory, and inserts calls to do so itself. The compiler does this by allocating every variable on the stack by default, and deallocating memory when the variable goes out of scope. Any variable that needs to be allocated on the heap must be created via certain types, the simplest one being a Box. Example code is shown below:
@@ -95,10 +95,10 @@ fn main() {
 	let x = Box::new(5);
 }
 \end{lstlisting}
-
+A benefit of the compiler handling memory deallocation is that the compiler will throw an error if it detects a dangling pointer. This is very useful for low level code, as dangling pointers cause weird behavior and are hard to detect in languages like C, where allocation and deallocation is handled by the user.
 
 \section{Disadvantages to other languages}
-As Rust just hist 1.0 this past spring, it is still a relatively young language. The language is starting to focus on backwards compatibility, but still is defining itself, so changes that may change the syntax may occur. Also, it does not support event-driven programming, which is used mainly in web applications where you interact with an interface. As well, there is no standard way of creating GUIs in Rust.
+As Rust just hit 1.0 this past spring, it is still a relatively young language. The language is starting to focus on backwards compatibility, but still is defining itself, so changes that may change the syntax may occur. Also, it does not support event-driven programming, which is used mainly in web applications where you interact with an interface. Additionally, there is no standard way of creating GUIs in Rust.
 
 \section{References}
 The Rust Programming Language Documentation: https://doc.rust-lang.org/stable/ \newline
