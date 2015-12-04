@@ -4,10 +4,12 @@
 
 \usepackage{listings}
 \usepackage[margin=1in]{geometry}
+\usepackage{multicol}
 
 \begin{document}
 \maketitle
 \tableofcontents
+
 
 \section{Installation}
 To install Rust, you can find binaries for Linux, Mac OSX, or Windows at https://www.rust-lang.org/downloads.html or download the source from Github at https://github.com/rust-lang/rust. If you are on OSX, you can install Rust through Homebrew or if you are using Arch Linux, it is available in the community repositories of Pacman. This guide was made with the current version of the Rust compiler (rustc 1.4.0) and the current version of the Rust project manager (Cargo 0.6.0)
@@ -24,6 +26,7 @@ To compile a Rust file, one can type \emph{rustc main.rs} and an executable main
 
 \section{Paradigms}
 Rust uses the following paradigms:
+\begin{multicols}{3}
 \begin{itemize}
 \item Imperative
 \item Object-oriented
@@ -33,6 +36,7 @@ Rust uses the following paradigms:
 \item Reflective
 \item Concurrent
 \end{itemize}
+\end{multicols}
 
 \section{Data Types}
 There are 10 types within Rust: primitive, textual, tuples vector, structure, enumerated, recursive, pointer, function, and object. There are also two things that support typing: type parameters and the self type.
@@ -86,7 +90,7 @@ Following, this, your source files are stored in the src/ directory and then all
 \section{Example: "Harry's Random Walk" Overview}
 Harry's Random Walk is good example to test out many features of the Rust programming language, including GUIs, random number generation, and the overall workflow of building Rust applications.
 
-Attached in the HarrysRandomWalk/ directory is all of the required files to run the program. The main package used to create HRW is Piston [website: http://www.piston.rs/], a game engine that uses OpenGL as a graphical backend. Instead of downloading the engine manually and linking it together with the program, the only thing needed to do was to include the required packages in the Cargo.toml file. Rust will automatically download the needed dependencies and nothing more.
+Attached in the HarrysRandomWalk/ directory is all of the required files to run the program. The main package used to create Harry's Random Walk is Piston [website: http://www.piston.rs/], a game engine that uses OpenGL as a graphical backend. Instead of downloading the engine manually and linking it together with the program, the only thing needed to do was to include the required packages in the Cargo.toml file. Rust will automatically download the needed dependencies and nothing more.
 
 \section{Advantages to other languages}
 A key feature of Rust is how it handles memory allocation. In Rust, memory is freed automatically when it is no longer needed. However, a garbage collector is not used to do this. Instead, the compiler automatically determines when the program should deallocate memory, and inserts calls to do so itself. The compiler does this by allocating every variable on the stack by default, and deallocating memory when the variable goes out of scope. Any variable that needs to be allocated on the heap must be created via certain types, the simplest one being a Box. Example code is shown below:
@@ -98,7 +102,7 @@ fn main() {
 A benefit of the compiler handling memory deallocation is that the compiler will throw an error if it detects a dangling pointer. This is very useful for low level code, as dangling pointers cause weird behavior and are hard to detect in languages like C, where allocation and deallocation is handled by the user.
 
 \section{Disadvantages to other languages}
-As Rust just hit 1.0 this past spring, it is still a relatively young language. The language is starting to focus on backwards compatibility, but still is defining itself, so changes that may change the syntax may occur. Also, it does not support event-driven programming, which is used mainly in web applications where you interact with an interface. Additionally, there is no standard way of creating GUIs in Rust.
+As Rust just hit 1.0 this past spring, it is still a relatively young language. The language is starting to focus on backwards compatibility, but still is defining itself, so changes that may change the syntax may occur. Also, it does not support event-driven programming, which is used mainly in web applications where you interact with an interface. Additionally, there is no standard way of creating GUIs in Rust that is developed by Mozilla, although, third-party packages exist which are ports other GUI libraries such as SDL and SFML.
 
 \section{References}
 The Rust Programming Language Documentation: https://doc.rust-lang.org/stable/ \newline
